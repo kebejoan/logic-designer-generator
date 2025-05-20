@@ -39,7 +39,7 @@ def selectAINpasType (string: str, idx) -> str:
         case "I_Temp":
             return "NPAS_AI_TEMP"    
         case _:
-            print(f"| AI Type Wrong Definition at line {idx} Must be either 'I_Anlg' or 'I_Temp'")
+            print(f"| AI Type Wrong Definition at line {idx}. Must be either 'I_Anlg' or 'I_Temp'")
             return "NPAS_AI_ANLG"
     
 def selectAIDtagType (string: str, idx) -> str:
