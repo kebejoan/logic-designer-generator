@@ -5,3 +5,6 @@ MASTER.csv
 /__pycache__
 /HANDLER/__pycache__
 /.git
+/build
+# /dist
+LOGIC_GENERATOR.spec
