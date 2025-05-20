@@ -21,8 +21,8 @@ Output:
 
 ## How to Download the Tool
 
-1. For the Executable, access the /dist folder and download `LOGIC_GENERATOR.exe`
-2. For the EXCEL MASTER file, download from the root `EXCEL_MASTER.xlsx`
+1. For the Executable, access the /dist folder and download `LOGIC_GENERATOR.exe` or download [here](/dist/LOGIC_GENERATOR.exe)
+2. For the EXCEL MASTER file, download from the root `EXCEL_MASTER.xlsx` or download [here](/EXCEL_MASTER.xlsx)
 3. Put both file in the same folder (preferably that won't need access as Administrator)
 
 ## How to Use The Executable (TL;DR)
