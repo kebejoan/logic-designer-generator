@@ -30,9 +30,10 @@ Output:
 Complete 'How to' is explained inside the README sheet in the EXCEL_MASTER.xlsx file
 1. Put the EXCEL_MASTER.xlsx file in the same folder as LOGIC_GENERATOR.exe file
 2. Open the EXCEL_MASTER.xlsx file and add in the I/O data that you want to be generated
-3. Import the DEV_LAVEL into the logic designer
-4. Copy the generated STRUCT_TEXT into a new POU
-5. Copy the generated LOC_VAR into the new POU
+3. Execute LOGIC_GENERATOR.exe
+4. Import the DEV_LAVEL into the logic designer
+5. Copy the generated STRUCT_TEXT into a new POU
+6. Copy the generated LOC_VAR into the new POU
 
 ## 🌳 Project Tree
 ```sh
