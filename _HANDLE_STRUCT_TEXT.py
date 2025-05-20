@@ -14,7 +14,7 @@ def di(DATA: DataClass):
 def do(DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagOut1)}(IN_VAL:={remove_(DATA.tagOut1)});")
-    script_lines.append(f"{remove_(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
@@ -38,6 +38,7 @@ def ao (DATA: DataClass):
 def pvi (DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_AI);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append(f"{DATA.tagIn1}(IN:=_{remove_(DATA.tagIn1)}.OUT,ENG_RW:={DATA.tagIn1}_ENG,PRM_RW:={DATA.tagIn1}_PRM);")
     script_lines.append(f"{DATA.tagIn1}_OUT:={DATA.tagIn1}.OUT;")
     script_lines.append(f"{DATA.tagIn1}_ENG:={DATA.tagIn1}.ENG_RW;")
@@ -72,14 +73,16 @@ def pid (DATA: DataClass):
 def sio22(DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append(f"_{remove_(DATA.tagIn2)}(IN:={DATA.tagIn2}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn2)}:=_{remove_(DATA.tagIn2)}.OUT_VAL;")
     script_lines.append(f"{DATA.npasName}(IN1:=_{remove_(DATA.tagIn1)}.OUT,IN2:=_{remove_(DATA.tagIn2)}.OUT,TSI:={DATA.npasName}_TSI,SWI:={DATA.npasName}_SWI,INTLOCK:={DATA.npasName}_ITLK,ENG_RW:={DATA.npasName}_ENG,PRM_RW:={DATA.npasName}_PRM);")
     script_lines.append(f"{DATA.npasName}_ENG:={DATA.npasName}.ENG_RW;")
     script_lines.append(f"{DATA.npasName}_PRM:={DATA.npasName}.PRM_RW;")
     script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT1);")
     script_lines.append(f"_{remove_(DATA.tagOut2)}(IN:={DATA.npasName}.OUT2);")
-    script_lines.append(f"{remove_(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
-    script_lines.append(f"{remove_(DATA.tagOut2)}_DO:=_{remove_(DATA.tagOut2)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut2)}_DO:=_{remove_(DATA.tagOut2)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
@@ -87,11 +90,14 @@ def sio22(DATA: DataClass):
 def sio12(DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append(f"{DATA.npasName}(IN:=_{remove_(DATA.tagIn1)}.OUT,TSI:={DATA.npasName}_TSI,SWI:={DATA.npasName}_SWI,INTLOCK:={DATA.npasName}_ITLK,ENG_RW:={DATA.npasName}_ENG,PRM_RW:={DATA.npasName}_PRM);")
     script_lines.append(f"{DATA.npasName}_ENG:={DATA.npasName}.ENG_RW;")
     script_lines.append(f"{DATA.npasName}_PRM:={DATA.npasName}.PRM_RW;")
-    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT);")
-    script_lines.append(f"{remove_(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT1);")
+    script_lines.append(f"_{remove_(DATA.tagOut2)}(IN:={DATA.npasName}.OUT2);")
+    script_lines.append(f"{(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut2)}_DO:=_{remove_(DATA.tagOut2)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
@@ -99,12 +105,14 @@ def sio12(DATA: DataClass):
 def sio21(DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append(f"_{remove_(DATA.tagIn2)}(IN:={DATA.tagIn2}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn2)}:=_{remove_(DATA.tagIn2)}.OUT_VAL;")
     script_lines.append(f"{DATA.npasName}(IN1:=_{remove_(DATA.tagIn1)}.OUT,IN2:=_{remove_(DATA.tagIn2)}.OUT,TSI:={DATA.npasName}_TSI,SWI:={DATA.npasName}_SWI,INTLOCK:={DATA.npasName}_ITLK,ENG_RW:={DATA.npasName}_ENG,PRM_RW:={DATA.npasName}_PRM);")
     script_lines.append(f"{DATA.npasName}_ENG:={DATA.npasName}.ENG_RW;")
     script_lines.append(f"{DATA.npasName}_PRM:={DATA.npasName}.PRM_RW;")
     script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT);")
-    script_lines.append(f"{remove_(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
@@ -112,11 +120,12 @@ def sio21(DATA: DataClass):
 def sio11(DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_DI);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append(f"{DATA.npasName}(IN:=_{remove_(DATA.tagIn1)}.OUT,TSI:={DATA.npasName}_TSI,SWI:={DATA.npasName}_SWI,INTLOCK:={DATA.npasName}_ITLK,ENG_RW:={DATA.npasName}_ENG,PRM_RW:={DATA.npasName}_PRM);")
     script_lines.append(f"{DATA.npasName}_ENG:={DATA.npasName}.ENG_RW;")
     script_lines.append(f"{DATA.npasName}_PRM:={DATA.npasName}.PRM_RW;")
     script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT);")
-    script_lines.append(f"{remove_(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
+    script_lines.append(f"{(DATA.tagOut1)}_DO:=_{remove_(DATA.tagOut1)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
