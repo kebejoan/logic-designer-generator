@@ -3,4 +3,5 @@
 MASTER.csv
 ~$EXCEL_MASTER.xlsx
 /__pycache__
+/HANDLER/__pycache__
 /.git

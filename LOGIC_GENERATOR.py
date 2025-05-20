@@ -1,8 +1,8 @@
 import os
 import sys
-import _HANDLE_MASTER
+from HANDLER import _HANDLE_MASTER
+from HANDLER._UTILS import initMessage
 import pandas as pd
-from _UTILS import initMessage
 
 # Get the directory where the .exe is located
 exe_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
@@ -25,11 +25,14 @@ userInput = input("| Do you have EXCEL_MASTER.xlsx on the same folder as the LOG
 match userInput:
     case "Y" | "y":
         exec = True
+        print("| Reading EXCEL_MASTER.xlsx file...")
     case "N" | "n":
-        print("| Please put EXCEL_MASTER.xlsx in the same folder of LOGIC_DESIGNER.exe")
+        print("| Please put EXCEL_MASTER.xlsx in the same folder as LOGIC_GENERATOR.exe")
         exec = False
     case _:
         print("| wrong input")
+        
+
 
 if exec:
     if not os.path.exists(master_excel_path):
@@ -37,6 +40,7 @@ if exec:
         input("| Press Enter to continue...")
     else:
         _HANDLE_MASTER.ExcelMasterToCsv(master_excel_path, master_csv_path)
+        print("| Generating MASTER.csv file...")
         if not os.path.exists(master_csv_path):
             print(f"| Error: MASTER.csv file is not generated at {master_csv_path}")
             input("| Press Enter to continue...")

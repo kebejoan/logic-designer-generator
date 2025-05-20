@@ -1,7 +1,7 @@
 # HEADER:
 # DeviceLabel,Comment,Signal,Task,ScaleLow,ScaleHigh,Unit,PulseRate,RangeLow,RangeHigh,Address
 
-from _UTILS import DataClass
+from HANDLER._UTILS import DataClass
 
 def di(DATA : DataClass):
     s_ = []

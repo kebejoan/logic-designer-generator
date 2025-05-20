@@ -1,9 +1,9 @@
 from io import StringIO
 import pandas as pd
-import _HANDLE_STRUCT_TEXT
-import _HANDLE_LOC_VAR
-import _HANDLE_DEV_LBL
-from _UTILS import (
+from HANDLER import _HANDLE_STRUCT_TEXT
+from HANDLER import _HANDLE_LOC_VAR
+from HANDLER import _HANDLE_DEV_LBL
+from HANDLER._UTILS import (
     DataClass,
     formatTag,
     selectAIDtagType,
@@ -78,7 +78,7 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
     for _, row in df.iterrows():
         index+=1
         print(f"| Reading data line: {index}")
-        time.sleep(0.1) #CLI aestethic only
+        time.sleep(0.15) #CLI aestethic only
         DATA_LINE = [ row[ 'CATEGORY' ], row[ 'TAG_IN1' ], row[ 'DESC_IN1' ], row[ 'TAG_IN2' ], row[ 'DESC_IN2' ], row[ 'TAG_OUT1' ], row[ 'DESC_OUT1' ], row[ 'TAG_OUT2' ], row[ 'DESC_OUT2' ], row[ 'NPAS_SPECIFIC_NAME' ], row[ 'NPAS_SPECIFIC_DESC' ], row[ 'ANLG_IN_TYPE' ], row[ 'ANLG_IN_RANGE_LO' ], row[ 'ANLG_IN_RANGE_HI' ], row[ 'ANLG_IN_UNIT' ], row[ 'ANLG_OUT_RANGE_LO' ], row[ 'ANLG_OUT_RANGE_HI' ], row[ 'ANLG_OUT_UNIT' ] ]
         
         #input DATA_LINE to a class
@@ -101,8 +101,8 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
             anlgOutLo   = DATA_LINE[15],
             anlgOutHi   = DATA_LINE[16],
             anlgOutUnit = DATA_LINE[17],
-            npasAIType  = selectAINpasType(DATA_LINE[11], index+1),
-            DTagAIType  = selectAIDtagType(DATA_LINE[11], index+1)
+            npasAIType  = selectAINpasType(DATA_LINE[11], index+1) if DATA_LINE[0] in ("AI", "PVI", "PID") else "",
+            DTagAIType  = selectAIDtagType(DATA_LINE[11], index+1) if DATA_LINE[0] in ("AI", "PVI", "PID") else ""
         )
         
         match DATA_LINE[0]:
@@ -154,11 +154,13 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
                 print(f"| Line {index+1} invalid category. Check MASTER.csv")
     
     #write Dev Label Lines to .csv
+    print("| Generating DEV_LABEL.csv file...")
     dev_lbl_script = "\n".join(lines_dev_lbl)
     with open(dir_dev_lbl, "w", encoding="utf-8") as f:
         f.write(dev_lbl_script)
     
     #write Local Variable Lines to .xlsx
+    print("| Generating LOC_VAR.xlsx file...")
     loc_var_script = "\n".join(lines_loc_var)
     stripped = loc_var_script.strip()
     stripped = pd.read_csv(StringIO(loc_var_script))
@@ -188,5 +190,6 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
     final_script = "\n".join(scripts)
 
     # Save the script to a text file
+    print("| Generating STRUCT_TEXT.txt file...")
     with open(dir_str_text, "w") as file:
         file.write(final_script)
