@@ -1,0 +1,5 @@
+#ignore file and folder
+/Output
+MASTER.csv
+~$EXCEL_MASTER.xlsx
+/__pycache__
