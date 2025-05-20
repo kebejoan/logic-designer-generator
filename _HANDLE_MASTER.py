@@ -101,8 +101,8 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
             anlgOutLo   = DATA_LINE[15],
             anlgOutHi   = DATA_LINE[16],
             anlgOutUnit = DATA_LINE[17],
-            npasAIType  = selectAINpasType(DATA_LINE[11]),
-            DTagAIType  = selectAIDtagType(DATA_LINE[11])
+            npasAIType  = selectAINpasType(DATA_LINE[11], index),
+            DTagAIType  = selectAIDtagType(DATA_LINE[11], index)
         )
         
         match DATA_LINE[0]:

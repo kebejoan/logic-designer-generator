@@ -32,17 +32,24 @@ def formatTag (string: str, isNan: bool) -> str:
         return ""
     else: return re.sub(r"[-\s]", "_", string)
 
-def selectAINpasType (string: str) -> str:
-    if string == "I_Anlg":
-        return "NPAS_AI_ANLG"
-    else: 
-        return "NPAS_AI_TEMP"
+def selectAINpasType (string: str, idx) -> str:
+    match (string):
+        case "I_Anlg":
+            return "NPAS_AI_ANLG"
+        case "I_Temp":
+            return "NPAS_AI_TEMP"    
+        case _:
+            print(f"AI Type Wrong Definition at line {idx} Must be either 'I_Anlg' or 'I_Temp'")
+        
     
-def selectAIDtagType (string: str) -> str:
-    if string == "I_Anlg":
-        return "DTag_I_Anlg"
-    else: 
-        return "DTag_I_Temp"
+def selectAIDtagType (string: str, idx) -> str:
+    match (string):
+        case "I_Anlg":
+            return "DTag_I_Anlg"
+        case "I_Temp":
+            return "DTag_I_Temp"    
+        case _:
+            print(f"AI Type Wrong Definition at line {idx}. Must be either 'I_Anlg' or 'I_Temp'")
     
 def giveHeaderFooter():
     s_ = []
