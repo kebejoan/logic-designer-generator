@@ -39,8 +39,8 @@ def selectAINpasType (string: str, idx) -> str:
         case "I_Temp":
             return "NPAS_AI_TEMP"    
         case _:
-            print(f"AI Type Wrong Definition at line {idx} Must be either 'I_Anlg' or 'I_Temp'")
-        
+            print(f"| AI Type Wrong Definition at line {idx} Must be either 'I_Anlg' or 'I_Temp'")
+            return "NPAS_AI_ANLG"
     
 def selectAIDtagType (string: str, idx) -> str:
     match (string):
@@ -49,7 +49,8 @@ def selectAIDtagType (string: str, idx) -> str:
         case "I_Temp":
             return "DTag_I_Temp"    
         case _:
-            print(f"AI Type Wrong Definition at line {idx}. Must be either 'I_Anlg' or 'I_Temp'")
+            print(f"| AI Type Wrong Definition at line {idx}. Must be either 'I_Anlg' or 'I_Temp'")
+            return "DTAG_I_Anlg"
     
 def giveHeaderFooter():
     s_ = []
