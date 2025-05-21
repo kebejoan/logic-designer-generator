@@ -43,7 +43,7 @@ Complete 'How to' is explained inside the README sheet in the EXCEL_MASTER.xlsx 
 │   ├── _HANDLE_LOC_VAR.py      # Script for handling local var generation
 │   ├── _HANDLE_STRUCT_TEXT.py  # Script for handling ST logic generation
 │   ├── _HANDLE_MASTER.py       # Script for handling MASTER input file
-│   ├── _UTILS.py               # Functions for utilities
+│   └── _UTILS.py               # Functions for utilities
 ├── dist/                       # Distributed package folder
 │   └── LOGIC_GENERATOR.exe     # Distributed package executable
 ├── LOGIC_GENERATOR.py          # Main script for the project
