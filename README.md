@@ -65,8 +65,21 @@ A lot of improvement is still needed for this tool. Some experienced by develope
 - Feature to add custom FBs to be generated. I think this will require UI first
 - Error Handling. Try-Catch can be implemented during reading or executing a function. Error message shall also be return with this Try-Catch
 
-<br>
-<br>
+## Versioning
+
+Currently I would say this is on Alpha version (V 1.0). 
+
+Criteria that main Version number will increase (V `1`.0):
+
+- GUI for the tool is developed
+- Custom Faceplate for the tool is developed
+- Major changes that change work flow of using the tool
+
+Criteria that sub Version number will increase (V 1.`0`):
+
+- Bug fixing
+- Minor changes that don't change work flow of using the tool
+
 <br>
 
-### Thank You for reading. Yours truly, _*Kebejoan*_
+### Thank You for reading. Yours truly, _*Kebejoan*_ <sub>(2025/05/21)</sub>
