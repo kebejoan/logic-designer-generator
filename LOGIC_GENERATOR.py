@@ -56,7 +56,7 @@ if exec:
     print("| ")
     print("| Source conversion in Logic Designer shall be used to convert ST Program into FBD Program")
     print("| kebejoan, 2025 - github.com/kebejoan - faishal.tahsiin@yokogawa.com")
-    print("| contribute: github.com/kebejoan/logic_designer_generator ")
+    print("| contribute: github.com/kebejoan/logic-designer-generator")
     print("|_______________________________________________________________________________________________")
     print("| ")
     input("|                                      press enter to exit                              ")
