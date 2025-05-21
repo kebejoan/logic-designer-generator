@@ -54,7 +54,7 @@ def mld(DATA : DataClass):
     s_ = []
     s_.append(f"{DATA.tagOut1}_AO,DTag_O_Anlg,{DATA.descOut1} /*: Automatically added by Logic Generator */,VAR_EXTERNAL,0")
     s_.append(f"_{remove_(DATA.tagOut1)},NPAS_AO_ANLG,{DATA.descOut1} FB,VAR,0")
-    s_.append(f"{remove_(DATA.tagOut1)},REAL,{DATA.descOut1} Raw Value,VAR,0")
+    # s_.append(f"{remove_(DATA.tagOut1)},REAL,{DATA.descOut1} Raw Value,VAR,0")
     s_.append(f"{DATA.tagOut1},NPAS_MLD,{DATA.descOut1},VAR,0")
     s_.append(f"{DATA.tagOut1}_ENG,SD_NPENG_MLD,{DATA.descOut1} ENG Var,VAR,0")
     s_.append(f"{DATA.tagOut1}_PRM,SD_NPPRM_MLD,{DATA.descOut1} PRM Var,VAR,1")
@@ -70,7 +70,7 @@ def pid(DATA : DataClass):
     s_.append(f"{remove_(DATA.tagIn1)},REAL,{DATA.descIn1} Raw Value,VAR,0")
     s_.append(f"{DATA.tagOut1}_AO,DTag_O_Anlg,{DATA.descOut1} /*: Automatically added by Logic Generator */,VAR_EXTERNAL,0")
     s_.append(f"_{remove_(DATA.tagOut1)},NPAS_AO_ANLG,{DATA.descOut1} FB,VAR,0")
-    s_.append(f"{remove_(DATA.tagOut1)},REAL,{DATA.descOut1} Raw Value,VAR,0")
+    # s_.append(f"{remove_(DATA.tagOut1)},REAL,{DATA.descOut1} Raw Value,VAR,0")
     s_.append(f"{DATA.npasName},NPAS_PID,{DATA.npasDesc},VAR,0")
     s_.append(f"{DATA.npasName}_ENG,SD_NPENG_PID,{DATA.npasDesc} ENG Var,VAR,0")
     s_.append(f"{DATA.npasName}_PRM,SD_NPPRM_PID,{DATA.npasDesc} PRM Var,VAR,1")

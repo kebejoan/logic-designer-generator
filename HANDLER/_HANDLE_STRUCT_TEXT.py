@@ -22,14 +22,14 @@ def do(DATA: DataClass):
 def ai (DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_AI);")
-    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
     script_lines.append("")
     script = "\n".join(script_lines)
     return script
 
 def ao (DATA: DataClass):
     script_lines = []
-    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={remove_(DATA.tagOut1)},TSFO_SW:=FALSE);")
+    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN_VAL:={remove_(DATA.tagOut1)},TSFO_SW:=FALSE);")
     script_lines.append(f"{(DATA.tagOut1)}_AO:=_{remove_(DATA.tagOut1)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
@@ -61,10 +61,11 @@ def mld (DATA: DataClass):
 def pid (DATA: DataClass):
     script_lines = []
     script_lines.append(f"_{remove_(DATA.tagIn1)}(IN:={DATA.tagIn1}_AI);")
-    script_lines.append(f"{DATA.npasDesc}(IN:=_{remove_(DATA.tagIn1)}.OUT,TSI:={DATA.npasDesc}_TSI,TIN:={DATA.npasDesc}_TIN,INTLOCK:={DATA.npasDesc}_ITLK,ENG_RW:={DATA.npasDesc}_ENG,PRM_RW:={DATA.npasDesc}_PRM);")
-    script_lines.append(f"{DATA.npasDesc}_ENG:={DATA.npasDesc}.ENG_RW;")
-    script_lines.append(f"{DATA.npasDesc}_PRM:={DATA.npasDesc}.PRM_RW;")
-    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasDesc}.OUT,TSFO_SW:=FALSE);")
+    script_lines.append(f"{remove_(DATA.tagIn1)}:=_{remove_(DATA.tagIn1)}.OUT_VAL;")
+    script_lines.append(f"{DATA.npasName}(IN:=_{remove_(DATA.tagIn1)}.OUT,TSI:={DATA.npasName}_TSI,TIN:={DATA.npasName}_TIN,INTLOCK:={DATA.npasName}_ITLK,ENG_RW:={DATA.npasName}_ENG,PRM_RW:={DATA.npasName}_PRM);")
+    script_lines.append(f"{DATA.npasName}_ENG:={DATA.npasName}.ENG_RW;")
+    script_lines.append(f"{DATA.npasName}_PRM:={DATA.npasName}.PRM_RW;")
+    script_lines.append(f"_{remove_(DATA.tagOut1)}(IN:={DATA.npasName}.OUT,TSFO_SW:=FALSE);")
     script_lines.append(f"{(DATA.tagOut1)}_AO:=_{remove_(DATA.tagOut1)}.OUT;")
     script_lines.append("")
     script = "\n".join(script_lines)
