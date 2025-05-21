@@ -3,6 +3,7 @@ import pandas as pd
 from HANDLER import _HANDLE_STRUCT_TEXT
 from HANDLER import _HANDLE_LOC_VAR
 from HANDLER import _HANDLE_DEV_LBL
+from HANDLER import _HANDLE_OUTPUT
 from HANDLER._UTILS import (
     DataClass,
     formatTag,
@@ -153,19 +154,6 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
             case _:
                 print(f"| Line {index+1} invalid category. Check MASTER.csv")
     
-    #write Dev Label Lines to .csv
-    print("| Generating DEV_LABEL.csv file...")
-    dev_lbl_script = "\n".join(lines_dev_lbl)
-    with open(dir_dev_lbl, "w", encoding="utf-8") as f:
-        f.write(dev_lbl_script)
-    
-    #write Local Variable Lines to .xlsx
-    print("| Generating LOC_VAR.xlsx file...")
-    loc_var_script = "\n".join(lines_loc_var)
-    stripped = loc_var_script.strip()
-    stripped = pd.read_csv(StringIO(loc_var_script))
-    stripped.to_excel(dir_loc_var, index=False)
-    
     array_lines = [ #array for containing all lines
         lines_header,
         lines_di,
@@ -179,17 +167,14 @@ def MasterCsvToScripts(df, dir_dev_lbl, dir_loc_var, dir_str_text):
         lines_sio22,
         lines_footer
     ]
-    
-    scripts = [] #Var for appending all lines
-    
-    #join/append all lines
-    for i in range(len(array_lines)):
-        if len(array_lines[i]) > 0:
-            scripts.append("\n".join(array_lines[i]))
-    
-    final_script = "\n".join(scripts)
 
-    # Save the script to a text file
+    dev_lbl_script = "\n".join(lines_dev_lbl)
+    print("| Generating DEV_LABEL.csv file...")
+    _HANDLE_OUTPUT.GenerateCSV(dev_lbl_script, dir_dev_lbl)
+    
+    loc_var_script = "\n".join(lines_loc_var)
+    print("| Generating LOC_VAR.xlsx file...")
+    _HANDLE_OUTPUT.GenerateXLSX(loc_var_script, dir_loc_var)
+    
     print("| Generating STRUCT_TEXT.txt file...")
-    with open(dir_str_text, "w") as file:
-        file.write(final_script)
+    _HANDLE_OUTPUT.GenerateTXT(array_lines, dir_str_text)

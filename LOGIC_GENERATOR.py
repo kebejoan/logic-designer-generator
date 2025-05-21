@@ -20,7 +20,7 @@ output_structext_path = os.path.join(output_dir, "STRUCT_TEXT.txt")
 initMessage()
 exec = False
 
-userInput = input("| Do you have EXCEL_MASTER.xlsx on the same folder as the LOGICE_GENERATOR.exe (Y/N)?")
+userInput = input("| Do you have EXCEL_MASTER.xlsx on the same folder as the LOGIC_GENERATOR.exe (Y/N)?")
 
 match userInput:
     case "Y" | "y":
